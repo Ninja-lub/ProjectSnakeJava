@@ -55,6 +55,11 @@ public class PanelSnake extends JPanel implements KeyListener
             case KeyEvent.VK_S -> this.ctrl.changerDir('B');
             case KeyEvent.VK_Q -> this.ctrl.changerDir('G');
             case KeyEvent.VK_D -> this.ctrl.changerDir('D');
+            case KeyEvent.VK_SPACE -> 
+            {
+                this.ctrl.finJeu();
+                this.ctrl.lancerJeu();
+            }
         }
     }
 

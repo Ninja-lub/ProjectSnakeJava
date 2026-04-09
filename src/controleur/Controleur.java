@@ -19,8 +19,6 @@ public class Controleur implements ActionListener
     {
         this.metier = new Snake();
         this.ihm = new FrameSnake(this);
-
-        this.lancerJeu();
     }
 
     public void lancerJeu()
@@ -41,7 +39,25 @@ public class Controleur implements ActionListener
     public void actionPerformed(ActionEvent e)
     {
         this.metier.deplacer();
+        if(!this.metier.estActif())
+        {
+            System.out.println("GAME OVER");
+            this.finJeu();
+        }
         this.ihm.repaint();
+    }
+
+    public void finJeu()
+    {
+        if (this.timer != null)
+        {
+            this.timer.stop();
+        }
+        
+        
+        this.metier = new Snake();
+        this.ihm.dispose();
+        this.ihm = new FrameSnake(this);
     }
 
     public static void main(String[] args)
