@@ -14,7 +14,8 @@ public class Snake
 
     private boolean jeuActif;
     
-    
+    // Constructeur
+
     public Snake()
     {
         this.snake = new ArrayList<>();
@@ -26,6 +27,19 @@ public class Snake
 
 		this.genererPomme();
     }
+
+	//------------------------//
+	// Getteurs               //
+	//------------------------//
+
+	public boolean 		estActif			() 			{ return this.jeuActif; 	}
+	public List<Point> 	getSnake     		() 			{ return this.snake; 		}
+	public Point 		getPomme 			()			{ return this.pomme;		}
+	public char  		getOrientation     	() 			{ return this.orientation; 	}
+
+	//-----------------------//
+	// Méthodes Metier       //
+	//-----------------------//
 
 	public boolean deplacementPossible()
 	{
@@ -145,20 +159,31 @@ public class Snake
 
 	public void genererPomme()
 	{
-		Point potentiellePomme = new Point((int) (Math.round(Math.random()*Snake.LIG)),(int) (Math.round(Math.random()*Snake.COL)) );
+		Point potentiellePomme;
 
-		for (Point p : this.snake)
+		while(true)
 		{
-			if (p.equals(potentiellePomme)) 
-			{ 
-				potentiellePomme = new Point((int) (Math.round(Math.random()*Snake.LIG)),(int) (Math.round(Math.random()*Snake.COL)) ); 
-				break;
-			}
-			else
+			int x = (int) (Math.random() * Snake.LIG);
+			int y = (int) (Math.random() * Snake.COL);
+
+			potentiellePomme = new Point(x, y);
+
+			boolean surSerpent = false;
+
+			for (Point p : this.snake)
 			{
-				continue;
+				if (p.equals(potentiellePomme))
+				{
+					surSerpent = true;
+					break;
+				}
 			}
-			
+
+			if(!surSerpent)
+			{
+				this.pomme = potentiellePomme;
+				return;
+			}
 		}
 	}
 
