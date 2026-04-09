@@ -1,3 +1,5 @@
+package metier;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.awt.Point;
@@ -148,6 +150,7 @@ public class Snake
 			if (nouvelleTete.equals(this.pomme))
 			{
 				this.snake.add(dernier);
+				this.genererPomme();
 			}
 		}
 	}
